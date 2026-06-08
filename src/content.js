@@ -90,9 +90,10 @@ function applySettings() {
   }
 
   const viewportFullscreen = isViewportFullscreen();
+  const pageFullscreen = isPageFullscreen();
   const isWindows = state.platformOs === "win";
   const immersiveFullscreen = state.fullscreen || viewportFullscreen;
-  const enabled = state.settings.enabled && isWindows && immersiveFullscreen;
+  const enabled = state.settings.enabled && isWindows && immersiveFullscreen && !pageFullscreen;
 
   state.root.dataset.placement = state.settings.placement;
   state.root.dataset.enabled = String(enabled);
@@ -107,6 +108,7 @@ function applySettings() {
     platformOs: state.platformOs,
     isWindows,
     immersiveFullscreen,
+    pageFullscreen,
     backgroundFullscreen: state.fullscreen,
     viewportFullscreen,
     placement: state.settings.placement,
@@ -255,6 +257,22 @@ function isViewportFullscreen() {
     screen: { width: screen.width, height: screen.height }
   });
   return fullscreen;
+}
+
+function isPageFullscreen() {
+  const fullscreenElement =
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.mozFullScreenElement ||
+    document.msFullscreenElement;
+  const pageFullscreen = Boolean(fullscreenElement);
+  log("fullscreen:page-check", {
+    pageFullscreen,
+    elementTag: fullscreenElement?.tagName,
+    elementId: fullscreenElement?.id || "",
+    elementClass: typeof fullscreenElement?.className === "string" ? fullscreenElement.className : ""
+  });
+  return pageFullscreen;
 }
 
 function scheduleReveal() {
@@ -408,6 +426,13 @@ window.addEventListener("resize", () => {
 window.addEventListener("pointermove", moveResize);
 window.addEventListener("pointerup", endResize);
 window.addEventListener("pointercancel", endResize);
+
+for (const eventName of ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "MSFullscreenChange"]) {
+  document.addEventListener(eventName, () => {
+    log("fullscreen:event", { eventName });
+    if (state.settings) applySettings();
+  });
+}
 
 chrome.runtime.onMessage.addListener((message) => {
   log("message:received", { type: message?.type });

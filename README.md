@@ -33,7 +33,7 @@ Drawer size is adjusted directly on the drawer. Drag the visible edge to resize 
 
 Chrome extensions cannot draw over Chrome's own tab bar, toolbar, browser menus, or restricted pages such as `chrome://extensions`. This extension injects the tab strip into ordinary `http` and `https` web pages, so it works best for fullscreen browsing and fullscreen video pages.
 
-The overlay is intended for Windows F11 immersive fullscreen. On macOS and other operating systems, the extension keeps the overlay disabled because native fullscreen/tab interactions already cover this use case better.
+The overlay is intended for Windows F11 immersive fullscreen. On macOS and other operating systems, the extension keeps the overlay disabled because native fullscreen/tab interactions already cover this use case better. The overlay also stays disabled while a web page element, such as a video player, is using the browser Fullscreen API.
 
 ## Chrome Web Store readiness
 
