@@ -14,9 +14,9 @@
     "service_worker": "src/background.js",
     "type": "module"
   },
+  "options_page": "options/index.html",
   "action": {
     "default_title": "Fullscreen Tab Peek",
-    "default_popup": "popup/index.html",
     "default_icon": {
       "16": "images/icon-16.png",
       "32": "images/icon-32.png",

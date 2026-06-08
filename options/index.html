@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fullscreen Tab Peek Options</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Fullscreen Tab Peek</p>
+          <h1>Options</h1>
+        </div>
+        <label class="switch">
+          <span>Enabled</span>
+          <input id="enabled" type="checkbox" />
+        </label>
+      </header>
+
+      <form class="panel">
+        <section class="field">
+          <div>
+            <label class="label">Tab drawer position</label>
+            <p class="help">Choose the screen edge that reveals the tab drawer.</p>
+          </div>
+          <div class="segmented" role="group" aria-label="Tab drawer position">
+            <button id="top" type="button" data-placement="top">Top</button>
+            <button id="left" type="button" data-placement="left">Left</button>
+            <button id="right" type="button" data-placement="right">Right</button>
+          </div>
+        </section>
+
+        <section class="field">
+          <div>
+            <label class="label" for="triggerPercent">Trigger area</label>
+            <p class="help">Percentage of the viewport edge that reacts to mouse hover.</p>
+          </div>
+          <div class="trigger-grid">
+            <div class="presets" role="group" aria-label="Trigger area presets">
+              <button type="button" data-trigger="0.5">0.5%</button>
+              <button type="button" data-trigger="1">1%</button>
+              <button type="button" data-trigger="1.5">1.5%</button>
+              <button type="button" data-trigger="2">2%</button>
+              <button type="button" data-trigger="2.5">2.5%</button>
+              <button type="button" data-trigger="3">3%</button>
+              <button type="button" data-trigger="3.5">3.5%</button>
+              <button type="button" data-trigger="4">4%</button>
+              <button type="button" data-trigger="4.5">4.5%</button>
+              <button type="button" data-trigger="5">5%</button>
+              <button type="button" data-trigger="10">10%</button>
+            </div>
+            <label class="number-field">
+              <input id="triggerPercent" type="number" min="0.5" max="30" step="0.5" inputmode="decimal" />
+              <span>%</span>
+            </label>
+          </div>
+        </section>
+      </form>
+    </main>
+    <script src="./options.js"></script>
+  </body>
+</html>
