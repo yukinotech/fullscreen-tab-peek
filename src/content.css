@@ -1,0 +1,177 @@
+#fullscreen-tab-peek-root {
+  --ftp-bg: rgba(18, 20, 24, 0.92);
+  --ftp-panel-width: min(340px, 78vw);
+  --ftp-edge-width: 10px;
+  --ftp-border: rgba(255, 255, 255, 0.12);
+  --ftp-text: #f6f7f9;
+  --ftp-muted: #aeb6c3;
+  --ftp-active: #48b0ff;
+  all: initial;
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+}
+
+#fullscreen-tab-peek-root[data-enabled="false"] {
+  display: none;
+}
+
+#fullscreen-tab-peek-root *,
+#fullscreen-tab-peek-root *::before,
+#fullscreen-tab-peek-root *::after {
+  box-sizing: border-box;
+}
+
+.ftp-edge {
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--ftp-edge-width);
+}
+
+.ftp-panel {
+  backdrop-filter: blur(18px);
+  background: var(--ftp-bg);
+  border: 1px solid var(--ftp-border);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
+  color: var(--ftp-text);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: min(78vh, 720px);
+  max-height: calc(100vh - 44px);
+  opacity: 0;
+  overflow: hidden;
+  padding: 10px;
+  pointer-events: auto;
+  position: absolute;
+  top: 22px;
+  transform: translateX(calc(-100% - 18px));
+  transition: opacity 150ms ease, transform 170ms ease;
+  width: var(--ftp-panel-width);
+}
+
+#fullscreen-tab-peek-root[data-side="left"] .ftp-edge {
+  left: 0;
+}
+
+#fullscreen-tab-peek-root[data-side="left"] .ftp-panel {
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+  left: 0;
+}
+
+#fullscreen-tab-peek-root[data-side="right"] .ftp-edge {
+  right: 0;
+}
+
+#fullscreen-tab-peek-root[data-side="right"] .ftp-panel {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+  right: 0;
+  transform: translateX(calc(100% + 18px));
+}
+
+#fullscreen-tab-peek-root.ftp-visible .ftp-panel {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ftp-header {
+  align-items: center;
+  border-bottom: 1px solid var(--ftp-border);
+  display: flex;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 0 4px 8px;
+}
+
+.ftp-title {
+  color: var(--ftp-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ftp-hint {
+  color: var(--ftp-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.ftp-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.ftp-tab {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: var(--ftp-text);
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  grid-template-columns: 22px minmax(0, 1fr) 22px;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 7px;
+  text-align: left;
+}
+
+.ftp-tab:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.ftp-tab.is-active {
+  background: rgba(72, 176, 255, 0.16);
+  border-color: rgba(72, 176, 255, 0.38);
+}
+
+.ftp-favicon {
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  border-radius: 4px;
+  color: var(--ftp-muted);
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+}
+
+.ftp-tab-title {
+  font-size: 13px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ftp-close {
+  align-items: center;
+  border-radius: 5px;
+  color: var(--ftp-muted);
+  display: flex;
+  font-size: 15px;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+}
+
+.ftp-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ftp-text);
+}

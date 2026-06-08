@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fullscreen Tab Peek</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Fullscreen Tab Peek</h1>
+        <p>Reveal tabs from a screen edge while Chrome is fullscreen.</p>
+      </header>
+
+      <label class="row">
+        <span>Enabled</span>
+        <input id="enabled" type="checkbox" />
+      </label>
+
+      <section>
+        <span class="label">Side</span>
+        <div class="segmented" role="group" aria-label="Reveal side">
+          <button id="left" type="button">Left</button>
+          <button id="right" type="button">Right</button>
+        </div>
+      </section>
+
+      <label class="stack">
+        <span>Edge width</span>
+        <input id="edgeWidth" type="range" min="4" max="28" step="1" />
+        <output id="edgeWidthValue"></output>
+      </label>
+    </main>
+    <script src="./popup.js"></script>
+  </body>
+</html>
